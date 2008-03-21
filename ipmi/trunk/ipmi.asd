@@ -20,6 +20,9 @@
   :version "0.0"
   :author "Chun Tian (binghe) <binghe.lisp@gmail.com>"
   :depends-on (:snmp)
-  :components ((:file "package")))
+  :components ((:file "package")
+               (:file "rmcp" :depends-on ("package"))
+               (:file "asf" :depends-on ("rmcp"))
+               (:file "ipmi" :depends-on ("rmcp"))))
 
 :eof
