@@ -3,9 +3,9 @@
 #|
 <DOCUMENTATION>
  <DESCRIPTION>
-  package definitions for IPMI
+  Package definitions for IPMI
   </DESCRIPTION>
- <COPYRIGHT YEAR='2007-2008' AUTHOR='Chun Tian (binghe)' MARK='(C)'
+ <COPYRIGHT YEAR='2008' AUTHOR='Chun Tian (binghe)' MARK='(C)'
             HREF='https://cl-net-snmp.svn.sourceforge.net/svnroot/cl-net-snmp/ipmi/trunk/package.lisp'/>
  <CHRONOLOGY>
   <DELTA DATE='20080321'>create documentation for "package.lisp"</DELTA>
@@ -18,7 +18,9 @@
 (defpackage ipmi
   (:use :common-lisp
         :usocket
-        :trivial-gray-streams))
+        :trivial-gray-streams)
+  (:export #:rmcp
+           #:asf))
 
 (in-package :ipmi)
 
