@@ -19,7 +19,7 @@
   :description "Intelligent Platform Management Interface"
   :version "0.0"
   :author "Chun Tian (binghe) <binghe.lisp@gmail.com>"
-  :depends-on (:snmp)
+  :depends-on (:usocket-udp)
   :components ((:file "package")
 	       (:file "method-combination" :depends-on ("package"))
                (:file "rmcp" :depends-on ("method-combination"))
