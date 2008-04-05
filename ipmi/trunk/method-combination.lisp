@@ -13,3 +13,6 @@
 (defgeneric encode (object)
   (:documentation "Encode a object into packet data")
   (:method-combination ipmi))
+
+(defgeneric decode (stream)
+  (:documentation "Decode a object from packet stream"))
