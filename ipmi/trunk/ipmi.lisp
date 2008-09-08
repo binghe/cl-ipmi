@@ -1,17 +1,7 @@
-;;;; -*- Mode: lisp; Syntax: ansi-common-lisp; Base: 10; Package: ipmi; -*-
+;;;; -*- Mode: Lisp -*-
+;;;; $Id$
 
-#|
-<DOCUMENTATION>
- <DESCRIPTION>
-  IPMI (Intelligent Platform Management Interface)
-  </DESCRIPTION>
- <COPYRIGHT YEAR='2008' AUTHOR='Chun Tian (binghe)' MARK='(C)'
-            HREF='https://cl-net-snmp.svn.sourceforge.net/svnroot/cl-net-snmp/snmp/trunk/ipmi.lisp'/>
- <CHRONOLOGY>
-  <DELTA DATE='20080321'>create documentation for "ipmi.lisp"</DELTA>
-  </CHRONOLOGY>
- </DOCUMENTATION>
-|#
+;;;; IPMI (Intelligent Platform Management Interface)
 
 (in-package :ipmi)
 
@@ -23,5 +13,3 @@
          (ping (make-instance 'asf-presence-ping)))
     (write-sequence (encode ping) (socket-stream socket))
     (force-output (socket-stream socket))))
-
-:eof
