@@ -25,7 +25,7 @@
                  :initform 0))
   (:documentation "Alert Standard Forum Message"))
 
-(defmethod encode ((object asf))
+(defmethod ipmi-encode ((object asf))
   (with-slots (message-type message-tag data-length) object
     (vector #x00 #x00 #x11 #xbe message-type message-tag 0 data-length)))
 
