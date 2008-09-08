@@ -1,18 +1,8 @@
-;;;; -*- Mode: lisp; Syntax: ansi-common-lisp; Base: 10; Package: ipmi; -*-
+;;;; -*- Mode: Lisp -*-
+;;;; $Id$
 
-#|
-<DOCUMENTATION>
- <DESCRIPTION>
-  Alert Standard Forum (ASF) Specification, v2.0
-  http://www.dmtf.org/standards/documents/ASF/DSP0136.pdf
-  </DESCRIPTION>
- <COPYRIGHT YEAR='2008' AUTHOR='Chun Tian (binghe)' MARK='(C)'
-            HREF='https://cl-net-snmp.svn.sourceforge.net/svnroot/cl-net-snmp/snmp/trunk/asf.lisp'/>
- <CHRONOLOGY>
-  <DELTA DATE='20080321'>create documentation for "asf.lisp"</DELTA>
-  </CHRONOLOGY>
- </DOCUMENTATION>
-|#
+;;;; Alert Standard Forum (ASF) Specification, v2.0
+;;;;  http://www.dmtf.org/standards/documents/ASF/DSP0136.pdf
 
 (in-package :ipmi)
 
@@ -64,6 +54,3 @@
                            :initarg :supported-interactions
                            :initform 0))
   (:documentation "ASF Presence Pong Message (Ping Response)"))
-
-
-:eof

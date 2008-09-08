@@ -1,17 +1,7 @@
-;;;; -*- Mode: lisp; Syntax: ansi-common-lisp; Base: 10; Package: ipmi; -*-
+;;;; -*- Mode: Lisp -*-
+;;;; $Id$
 
-#|
-<DOCUMENTATION>
- <DESCRIPTION>
-  RMCP (Remote Management Control Protocol)
-  </DESCRIPTION>
- <COPYRIGHT YEAR='2008' AUTHOR='Chun Tian (binghe)' MARK='(C)'
-            HREF='https://cl-net-snmp.svn.sourceforge.net/svnroot/cl-net-snmp/snmp/trunk/rmcp.lisp'/>
- <CHRONOLOGY>
-  <DELTA DATE='20080321'>create documentation for "rmcp.lisp"</DELTA>
-  </CHRONOLOGY>
- </DOCUMENTATION>
-|#
+;;;; RMCP (Remote Management Control Protocol)
 
 (in-package :ipmi)
 
@@ -38,5 +28,3 @@
   (format t "RMCP encode before.~%")
   (with-slots (version sequence-number class-of-message) object
     (vector version 0 sequence-number class-of-message)))
-
-:eof
