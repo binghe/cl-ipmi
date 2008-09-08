@@ -13,9 +13,13 @@
 	    'vector
 	    (nreverse (list ,@(call-methods head))))))
 
-(defgeneric encode (object)
+(defgeneric ipmi-encode (object)
   (:documentation "Encode a object into packet data")
   (:method-combination ipmi))
 
-(defgeneric decode (stream)
+(defgeneric ipmi-decode (stream)
   (:documentation "Decode a object from packet stream"))
+
+(defmethod ipmi-decode ((data sequence))
+  (let ((stream (make-instance 'asn.1:ber-stream :sequence data)))
+    (ipmi-decode stream)))

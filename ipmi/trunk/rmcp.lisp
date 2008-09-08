@@ -24,7 +24,6 @@
                      :initform +rmcp-message-class-asf+))
   (:documentation "RMCP Message"))
 
-(defmethod encode ((object rmcp))
-  (format t "RMCP encode before.~%")
+(defmethod ipmi-encode ((object rmcp))
   (with-slots (version sequence-number class-of-message) object
     (vector version 0 sequence-number class-of-message)))
