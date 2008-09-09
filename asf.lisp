@@ -33,9 +33,7 @@
   ()
   (:documentation "ASF Presence Ping Message (Ping Request)"))
 
-(defmethod initialize-instance ((instance asf-presence-ping) &rest initargs
-                                &key &allow-other-keys)
-  (declare (ignore initargs))
+(defmethod initialize-instance ((instance asf-presence-ping) &key &allow-other-keys)
   (setf (message-type-of instance) +asf-message-type-presence-ping+)
   (call-next-method))
 
@@ -54,3 +52,43 @@
                            :initarg :supported-interactions
                            :initform 0))
   (:documentation "ASF Presence Pong Message (Ping Response)"))
+
+(defmethod ipmi-decode-protocol ((stream stream) (parent rmcp)
+                                 (protocol (eql +rmcp-message-class-asf+)))
+  (declare (ignore protocol))
+  (let* ((enterprise-number (decode-integer-4 stream))
+         (message-type (read-byte stream))
+         (message-tag (read-byte stream))
+         (reserved (read-byte stream))
+         (data-length (read-byte stream)))
+    (declare (ignore reserved))
+    (if (/= enterprise-number +asf-iana-enterprise-number+)
+        (error 'ipmi-decode-error)
+      (ipmi-decode-protocol stream
+                            (change-class parent 'asf
+                                          :message-type message-type
+                                          :message-tag message-tag
+                                          :data-length data-length)
+                            message-type))))
+
+(defmethod ipmi-decode-protocol ((stream stream) (parent asf) (protocol integer))
+  (declare (ignore stream protocol))
+  (warn 'ipmi-decode-warning)
+  parent)
+
+(defmethod ipmi-decode-protocol ((stream stream) (parent asf)
+                                 (protocol (eql +asf-message-type-presence-ping+)))
+  (declare (ignore stream protocol))
+  (change-class parent 'asf-presence-ping))
+
+(defmethod ipmi-decode-protocol ((stream stream) (parent asf)
+                                 (protocol (eql +asf-message-type-presence-pong+)))
+  (let* ((enterprise-number (decode-integer-4 stream))
+         (oem (decode-integer-4 stream))
+         (supported-entities (read-byte stream))
+         (supported-interactions (read-byte stream)))
+    (change-class parent 'asf-presence-pong
+                  :iana-enterprise-number enterprise-number
+                  :oem-defined oem
+                  :supported-entities supported-entities
+                  :supported-interactions supported-interactions)))
