@@ -3,8 +3,6 @@
 
 (in-package :ipmi)
 
-(defvar *asf-rmcp-port* 623)
-
 (defclass ipmi-session ()
   ((socket  :type datagram-usocket
             :accessor ipmi-socket
@@ -16,7 +14,7 @@
             :accessor ipmi-port
             :initarg :port
             :initform *asf-rmcp-port*)
-   (version :type integer
+   (version :type number
             :accessor ipmi-version
             :initarg :version
             :initform 1.5))
