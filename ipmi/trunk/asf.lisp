@@ -25,6 +25,10 @@
                  :initform 0))
   (:documentation "Alert Standard Forum Message"))
 
+(defmethod initialize-instance :after ((instance asf) &rest initargs)
+  (declare (ignore initargs))
+  (setf (slot-value instance 'class-of-message) +rmcp-message-class-asf+))
+
 (defmethod ipmi-encode ((object asf))
   (with-slots (message-type message-tag data-length) object
     (vector #x00 #x00 #x11 #xbe message-type message-tag 0 data-length)))
@@ -33,9 +37,9 @@
   ()
   (:documentation "ASF Presence Ping Message (Ping Request)"))
 
-(defmethod initialize-instance ((instance asf-presence-ping) &key &allow-other-keys)
-  (setf (message-type-of instance) +asf-message-type-presence-ping+)
-  (call-next-method))
+(defmethod initialize-instance :after ((instance asf-presence-ping) &rest initargs)
+  (declare (ignore initargs))
+  (setf (message-type-of instance) +asf-message-type-presence-ping+))
 
 (defclass asf-presence-pong (asf)
   ((iana-enterprise-number :type (unsigned-byte 32)
@@ -52,6 +56,10 @@
                            :initarg :supported-interactions
                            :initform 0))
   (:documentation "ASF Presence Pong Message (Ping Response)"))
+
+(defmethod initialize-instance :after ((instance asf-presence-pong) &rest initargs)
+  (declare (ignore initargs))
+  (setf (message-type-of instance) +asf-message-type-presence-pong+))
 
 (defmethod ipmi-decode-protocol ((stream stream) (parent rmcp)
                                  (protocol (eql +rmcp-message-class-asf+)))
