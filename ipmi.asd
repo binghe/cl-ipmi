@@ -24,4 +24,5 @@
                (:file "pef" :depends-on ("ipmi"))
                (:file "sdr" :depends-on ("ipmi"))
                (:file "fru" :depends-on ("ipmi"))
-               (:file "sol" :depends-on ("ipmi"))))
+               (:file "sol" :depends-on ("ipmi"))
+               (:file "interface" :depends-on ("ipmi"))))

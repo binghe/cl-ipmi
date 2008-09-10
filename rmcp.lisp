@@ -20,8 +20,7 @@
                      :initarg :sequence-number
                      :initform #xff)
    (class-of-message :type (unsigned-byte 8)
-                     :initarg :class-of-message
-                     :initform +rmcp-message-class-asf+))
+                     :initarg :class-of-message))
   (:documentation "RMCP Message"))
 
 (defmethod ipmi-encode ((object rmcp))
